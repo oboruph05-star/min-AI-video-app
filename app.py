@@ -9,10 +9,10 @@ st.write("Skriv en prompt og lad AI lave en rigtig video til dig helt gratis.")
 # Tekstfeltet hvor du skriver din prompt
 user_prompt = st.text_input("Hvad skal videoen handle om?", "En rød bil der kører i regnvejr, 4k, cinematic")
 
-# Hent din nye hemmelige Write-nøgle sikkert
+# Hent din hemmelige Write-nøgle sikkert
 HF_TOKEN = st.secrets["HF_TOKEN"]
 
-# Link til en aktiv, gratis AI-videomodel på Hugging Face
+# VI SKIFTER TIL EN HELT ÅBEN OG GRATIS VIDEOMODEL HER:
 API_URL = "https://huggingface.co"
 headers = {"Authorization": f"Bearer {HF_TOKEN}"}
 
@@ -32,8 +32,8 @@ if st.button("🚀 Generer Video ud fra prompt"):
                 response = requests.post(API_URL, headers=headers, json=payload)
 
             if response.status_code == 200:
-                # Viser den færdige video på skærmen som en rigtig fil (.mp4)
+                # Viser den færdige video på skærmen
                 st.video(response.content)
-                st.success("Din video er klar! Hæv glasset.")
+                st.success("Din video er klar!")
             else:
                 st.error(f"Fejl fra AI-serveren: {response.status_code}. Prøv igen om et øjeblik.")
