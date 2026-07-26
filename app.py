@@ -1,28 +1,30 @@
 import streamlit as st
 from huggingface_hub import InferenceClient
 
-st.set_page_config(page_title="Min AI App", page_icon="🎨")
-st.title("🎨 Min Egen Gratis AI Generator")
-st.write("Skriv en prompt nedenfor og se AI skabe et mesterværk helt gratis.")
+st.set_page_config(page_title="Min AI Video App", page_icon="🎬")
+st.title("🎬 Min Egen Gratis AI Video Generator")
+st.write("Skriv en prompt nedenfor og se AI skabe en rigtig video helt gratis.")
 
-user_prompt = st.text_input("Hvad skal AI generere for dig?", "En flot rød bil der kører i regnvejr, 4k")
+user_prompt = st.text_input("Hvad skal AI lave en video af?", "En flot rød bil der kører i regnvejr, 4k, animation")
 
-# Henter din Write-nøgle fra Streamlit Secrets
+# Henter din opdaterede hemmelige nøgle
 HF_TOKEN = st.secrets["HF_TOKEN"]
 
-if st.button("🚀 Generer nu ud fra prompt"):
+if st.button("🚀 Generer video ud fra prompt"):
     if not user_prompt:
         st.warning("Skriv venligst en tekst først.")
     else:
-        with st.spinner("Forbinder til det nye AI-netværk... Vent venligst 10-15 sekunder..."):
-            try:    
-                # Den korrekte måde at kalde billedet på i det nye system
-                client = InferenceClient(model="black-forest-labs/FLUX.1-schnell", token=HF_TOKEN)
-                image = client.text_to_image(user_prompt)
-                # Viser det færdige resultat
-                st.image(image)
-                st.success("Succes! Din app virker fejlfrit.")
+        with st.spinner("AI tegner og danner din video... Vent venligst 15-30 sekunder..."):
+            try:
+                # Vi skifter til en helt åben og gratis videomodel
+                client = InferenceClient(model="Kijai/Cosmo-1-test", token=HF_TOKEN)
+                
+                # Vi beder klienten om at generere en video/animation ud fra din tekst
+                video_bytes = client.text_to_video(user_prompt)
+                
+                # Vi viser resultatet i en rigtig videoafspiller på skærmen
+                st.video(video_bytes)
+                st.success("Succes! Din video er klar.")
                 
             except Exception as e:
-                # Viser den præcise fejlbesked, hvis noget mod forventning driller
                 st.error(f"Teknisk fejl: {str(e)}")
