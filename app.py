@@ -18,7 +18,7 @@ if st.button("🚀 Generer nu ud fra prompt"):
             try:    
                 # Den korrekte måde at kalde billedet på i det nye system
                 client = InferenceClient(model="black-forest-labs/FLUX.1-schnell", token=HF_TOKEN)
-                
+                image = client.text_to_image(user_prompt)
                 # Viser det færdige resultat
                 st.image(image)
                 st.success("Succes! Din app virker fejlfrit.")
