@@ -15,10 +15,7 @@ if st.button("🚀 Generer nu ud fra prompt"):
         st.warning("Skriv venligst en tekst først.")
     else:
         with st.spinner("Forbinder til det nye AI-netværk... Vent venligst 10-15 sekunder..."):
-            try:
-                # Vi opsætter klienten korrekt med modellen direkte i starten
-                client = InferenceClient(model="stabilityai/stable-diffusion-2-1", token=HF_TOKEN)
-                
+            try:    
                 # Den korrekte måde at kalde billedet på i det nye system
                 client = InferenceClient(model="black-forest-labs/FLUX.1-schnell", token=HF_TOKEN)
                 
