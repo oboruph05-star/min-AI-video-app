@@ -20,7 +20,7 @@ if st.button("🚀 Generer nu ud fra prompt"):
                 client = InferenceClient(model="stabilityai/stable-diffusion-2-1", token=HF_TOKEN)
                 
                 # Den korrekte måde at kalde billedet på i det nye system
-                image = client.text_to_image(user_prompt)
+                client = InferenceClient(model="black-forest-labs/FLUX.1-schnell", token=HF_TOKEN)
                 
                 # Viser det færdige resultat
                 st.image(image)
